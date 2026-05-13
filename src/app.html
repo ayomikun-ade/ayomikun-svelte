@@ -15,6 +15,24 @@
 		/>
 		<meta property="og:type" content="website" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<script>
+			// Resolve theme before paint to prevent FOUC. Reads localStorage first,
+			// falls back to system preference. Mirrors logic in $lib/stores/theme.svelte.ts.
+			(function () {
+				try {
+					var stored = localStorage.getItem('theme');
+					var theme =
+						stored === 'light' || stored === 'dark'
+							? stored
+							: window.matchMedia('(prefers-color-scheme: light)').matches
+								? 'light'
+								: 'dark';
+					document.documentElement.setAttribute('data-theme', theme);
+				} catch (e) {
+					/* localStorage blocked — keep server-rendered default */
+				}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" class="noise">
