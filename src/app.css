@@ -64,6 +64,7 @@ html[data-theme='light'] {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
+		scroll-behavior: smooth;
 		transition:
 			background-color 0.4s var(--ease-drift),
 			color 0.4s var(--ease-drift);
@@ -122,6 +123,23 @@ html[data-theme='light'] {
 .js .to-reveal.is-revealed {
 	opacity: 1;
 	transform: none;
+}
+
+/* Mount-time reveal: fires immediately on first paint, staggered via inline `--d`.
+   Use on above-the-fold content where you don't need IntersectionObserver. */
+.reveal {
+	animation: reveal-up 0.9s var(--ease-drift) backwards;
+	animation-delay: var(--d, 0ms);
+}
+@keyframes reveal-up {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 /* Skip-nav: invisible until focused, then jumps into view. */

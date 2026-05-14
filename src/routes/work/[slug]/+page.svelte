@@ -165,20 +165,7 @@
 </article>
 
 <style>
-	.reveal {
-		animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-		animation-delay: var(--d, 0ms);
-	}
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(16px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+	/* `.reveal` is now defined globally in app.css — shared across pages. */
 
 	.placeholder {
 		background:

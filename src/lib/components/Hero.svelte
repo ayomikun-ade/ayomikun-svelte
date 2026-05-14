@@ -1,14 +1,38 @@
 <script lang="ts">
-	import { magnetic } from '$lib/actions/magnetic';
 	import { resumeUrl } from '$lib/data/socials';
+	import { reducedMotion } from '$lib/stores/motion.svelte';
 	import HeroBackground from './HeroBackground.svelte';
 	import SocialLinks from './SocialLinks.svelte';
+
+	// Cursor parallax for the hero glow. Normalised to roughly −0.5..0.5; the
+	// background component translates by ~40px per unit. Skipped under reduced
+	// motion and for non-mouse pointers.
+	let mx = $state(0);
+	let my = $state(0);
+
+	$effect(() => {
+		if (reducedMotion.current) return;
+		let raf = 0;
+		function handle(e: PointerEvent) {
+			if (e.pointerType !== 'mouse') return;
+			cancelAnimationFrame(raf);
+			raf = requestAnimationFrame(() => {
+				mx = e.clientX / window.innerWidth - 0.5;
+				my = e.clientY / window.innerHeight - 0.5;
+			});
+		}
+		window.addEventListener('pointermove', handle, { passive: true });
+		return () => {
+			window.removeEventListener('pointermove', handle);
+			cancelAnimationFrame(raf);
+		};
+	});
 </script>
 
 <section
 	class="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-center overflow-hidden"
 >
-	<HeroBackground />
+	<HeroBackground {mx} {my} />
 
 	<div class="relative z-10 mx-auto w-full max-w-6xl px-6 py-20 sm:px-10 sm:py-24">
 		<!-- Status / tagline -->
@@ -46,7 +70,6 @@
 		>
 			<a
 				href="/work"
-				use:magnetic={{ strength: 0.22, range: 140 }}
 				class="border-ink bg-accent text-accent-ink inline-flex items-center gap-2 border-2 px-5 py-3 transition-[box-shadow,transform] duration-200 hover:[box-shadow:var(--shadow-hard-sm)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none"
 			>
 				<span>See work</span>
@@ -55,7 +78,6 @@
 			<a
 				href={resumeUrl}
 				download
-				use:magnetic={{ strength: 0.18, range: 120 }}
 				class="border-border text-ink hover:border-ink inline-flex items-center gap-2 border-2 px-5 py-3 transition-colors"
 			>
 				<span aria-hidden="true">↓</span>
@@ -67,35 +89,12 @@
 		<div class="reveal mt-12" style="--d: 720ms">
 			<SocialLinks variant="icon" />
 		</div>
-
-		<!-- Scroll hint -->
-		<div
-			class="reveal text-ink-dim font-mono mt-16 flex items-center gap-3 text-xs tracking-[0.25em] uppercase"
-			style="--d: 880ms"
-		>
-			<span class="scroll-bar"></span>
-			scroll
-		</div>
 	</div>
 </section>
 
 <style>
-	/* Staggered entrance — each `.reveal` reads its own --d delay inline. */
-	.reveal {
-		animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-		animation-delay: var(--d, 0ms);
-	}
-
-	@keyframes reveal {
-		from {
-			opacity: 0;
-			transform: translateY(16px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+	/* `.reveal` (staggered mount-time entrance via inline --d) is defined globally
+	   in app.css so other pages can share it. */
 
 	/* Highlight word: hand-drawn-ish underbar that pulses subtly */
 	.alive {
@@ -124,23 +123,4 @@
 		}
 	}
 
-	/* Scroll hint vertical bar — slow downward sweep */
-	.scroll-bar {
-		display: inline-block;
-		width: 1px;
-		height: 28px;
-		background: linear-gradient(to bottom, transparent, var(--color-ink-muted), transparent);
-		animation: scroll-bar 2s ease-in-out infinite;
-	}
-	@keyframes scroll-bar {
-		0%,
-		100% {
-			transform: translateY(-8px);
-			opacity: 0.4;
-		}
-		50% {
-			transform: translateY(8px);
-			opacity: 1;
-		}
-	}
 </style>

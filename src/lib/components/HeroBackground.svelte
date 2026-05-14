@@ -3,13 +3,20 @@
   - Faint vertical grid lines (static, set the editorial rail rhythm)
   - A single horizontal scanline that drifts down on loop
   - An off-center accent glow for depth
-  All purely decorative — aria-hidden, no JS, respects reduced-motion via the
-  global rule in app.css.
+  - Optional cursor parallax: parent passes normalised mx/my (range ~−0.5..0.5),
+    rendered via the modern `translate` property so it composes with the
+    `drift` keyframe (which animates `transform`) without fighting it.
+  All purely decorative — aria-hidden, respects reduced-motion globally.
 -->
+<script lang="ts">
+	type Props = { mx?: number; my?: number };
+	let { mx = 0, my = 0 }: Props = $props();
+</script>
+
 <div class="bg-stack" aria-hidden="true">
 	<div class="grid-lines"></div>
 	<div class="scanline"></div>
-	<div class="glow"></div>
+	<div class="glow" style="--gx: {mx * 40}px; --gy: {my * 40}px;"></div>
 </div>
 
 <style>
@@ -61,6 +68,10 @@
 		opacity: 0.06;
 		filter: blur(40px);
 		animation: drift 18s ease-in-out infinite alternate;
+		/* Parallax offset is its own property — composes with the `transform`-based
+		   drift animation without overriding it. Smoothed for damped following. */
+		translate: var(--gx, 0) var(--gy, 0);
+		transition: translate 0.6s var(--ease-drift);
 	}
 
 	@keyframes scan {
