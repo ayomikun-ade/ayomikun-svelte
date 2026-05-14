@@ -11,10 +11,10 @@ export type Social = {
 };
 
 export const socials: Social[] = [
-	{ key: 'github', label: 'GitHub', href: 'https://github.com/' },
-	{ key: 'twitter', label: 'Twitter', href: 'https://x.com/' },
-	{ key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-	{ key: 'email', label: 'Email', href: 'mailto:ellumainc@gmail.com' }
+	{ key: 'github', label: 'GitHub', href: 'https://github.com/ayomikun-ade' },
+	{ key: 'twitter', label: 'Twitter', href: 'https://x.com/theayomikunade' },
+	{ key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/ayomikun-adeosun' },
+	{ key: 'email', label: 'Email', href: 'mailto:ayoadeosun10@gmail.com' }
 ];
 
 export const resumeUrl = '/resume.pdf';

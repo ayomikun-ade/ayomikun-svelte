@@ -37,8 +37,12 @@ export default defineConfig(
 		}
 	},
 	{
-		// Override or add rule settings here, such as:
-		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// Disabled deliberately: this rule guards against broken links under a
+			// deploy base path, which this site doesn't use (deploys at a domain
+			// root on Vercel). It also false-positives on dynamic hrefs like
+			// `{project.links.live}` — external URLs it can't analyse statically.
+			'svelte/no-navigation-without-resolve': 'off'
+		}
 	}
 );

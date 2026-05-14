@@ -162,8 +162,16 @@ export async function runItem(item: PaletteItem): Promise<boolean> {
 		return true;
 	}
 	if (item.href) {
-		if (item.href.startsWith('http') || item.href.startsWith('mailto:') || item.href.endsWith('.pdf')) {
-			window.open(item.href, item.href.startsWith('mailto:') ? '_self' : '_blank', 'noopener,noreferrer');
+		if (
+			item.href.startsWith('http') ||
+			item.href.startsWith('mailto:') ||
+			item.href.endsWith('.pdf')
+		) {
+			window.open(
+				item.href,
+				item.href.startsWith('mailto:') ? '_self' : '_blank',
+				'noopener,noreferrer'
+			);
 		} else {
 			await goto(item.href);
 		}

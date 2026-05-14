@@ -7,8 +7,7 @@
 		runItem,
 		kindLabel,
 		kindOrder,
-		type PaletteItem,
-		type PaletteKind
+		type PaletteItem
 	} from '$lib/commands/registry';
 
 	type ScoredItem = PaletteItem & { score: number; ranges: [number, number][] };
@@ -44,18 +43,13 @@
 		return hits;
 	});
 
-	// When grouping (empty query), produce [{kind, items}] in fixed order.
-	const grouped = $derived.by(() => {
-		const map = new Map<PaletteKind, ScoredItem[]>();
-		for (const item of scored) {
-			const arr = map.get(item.kind) ?? [];
-			arr.push(item);
-			map.set(item.kind, arr);
-		}
-		return kindOrder
-			.filter((k) => map.has(k))
-			.map((k) => ({ kind: k, items: map.get(k)! }));
-	});
+	// When grouping (empty query), produce [{kind, items}] in fixed order,
+	// dropping any kind with no items.
+	const grouped = $derived(
+		kindOrder
+			.map((kind) => ({ kind, items: scored.filter((item) => item.kind === kind) }))
+			.filter((group) => group.items.length > 0)
+	);
 
 	// Flat list (sorted) drives keyboard navigation regardless of grouping.
 	const flat = $derived(scored);
@@ -150,15 +144,15 @@
 		onkeydown={onPaletteKey}
 	>
 		<div
-			class="panel border-ink bg-bg/95 relative w-full max-w-xl border-2 shadow-[8px_8px_0_0_var(--color-accent)] backdrop-blur-md"
+			class="panel relative w-full max-w-xl border-2 border-ink bg-bg/95 shadow-[8px_8px_0_0_var(--color-accent)] backdrop-blur-md"
 			role="dialog"
 			aria-modal="true"
 			aria-label="Command palette"
 		>
 			<!-- Combobox input -->
-			<div class="border-border flex items-center gap-3 border-b-2 px-4 py-3">
+			<div class="flex items-center gap-3 border-b-2 border-border px-4 py-3">
 				<svg
-					class="text-ink-muted size-4 shrink-0"
+					class="size-4 shrink-0 text-ink-muted"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
@@ -178,21 +172,24 @@
 					autocapitalize="off"
 					spellcheck="false"
 					placeholder="Search pages, projects, or run a command…"
-					class="font-mono placeholder:text-ink-dim flex-1 bg-transparent text-sm tracking-wider focus:outline-none"
+					class="flex-1 bg-transparent font-mono text-sm tracking-wider placeholder:text-ink-dim focus:outline-none"
 					role="combobox"
 					aria-expanded="true"
 					aria-controls="palette-list"
 					aria-activedescendant={activeId ? optionId(activeId) : undefined}
 					aria-autocomplete="list"
 				/>
-				<kbd class="border-border text-ink-dim font-mono inline-flex items-center gap-0.5 border px-1.5 py-0.5 text-[10px] tracking-wider uppercase">
+				<kbd
+					class="inline-flex items-center gap-0.5 border border-border px-1.5 py-0.5 font-mono text-[10px] tracking-wider text-ink-dim uppercase"
+				>
 					Esc
 				</kbd>
 			</div>
 
 			<!-- Result count for screen readers -->
 			<p class="sr-only" aria-live="polite" aria-atomic="true">
-				{flat.length} {flat.length === 1 ? 'result' : 'results'}
+				{flat.length}
+				{flat.length === 1 ? 'result' : 'results'}
 			</p>
 
 			<!-- Results -->
@@ -203,14 +200,18 @@
 				class="max-h-[60vh] overflow-y-auto py-1"
 			>
 				{#if flat.length === 0}
-					<p class="text-ink-muted font-mono px-4 py-8 text-center text-xs tracking-widest uppercase">
+					<p
+						class="px-4 py-8 text-center font-mono text-xs tracking-widest text-ink-muted uppercase"
+					>
 						No results
 					</p>
 				{:else if !query}
 					<!-- Grouped, empty-query mode -->
 					{#each grouped as group (group.kind)}
 						<div role="group" aria-label={kindLabel[group.kind]}>
-							<div class="text-ink-dim font-mono px-4 pt-3 pb-1 text-[10px] tracking-[0.3em] uppercase">
+							<div
+								class="px-4 pt-3 pb-1 font-mono text-[10px] tracking-[0.3em] text-ink-dim uppercase"
+							>
 								{kindLabel[group.kind]}
 							</div>
 							{#each group.items as item (item.id)}
@@ -231,11 +232,13 @@
 									onmousemove={() => (activeIdx = idx)}
 									onclick={() => activate(item)}
 								>
-									<span class="font-display text-ink truncate text-[15px] font-semibold tracking-tight">
+									<span
+										class="truncate font-display text-[15px] font-semibold tracking-tight text-ink"
+									>
 										{item.label}
 									</span>
 									{#if item.hint}
-										<span class="text-ink-muted truncate text-xs">{item.hint}</span>
+										<span class="truncate text-xs text-ink-muted">{item.hint}</span>
 									{/if}
 								</div>
 							{/each}
@@ -256,7 +259,7 @@
 							onmousemove={() => (activeIdx = idx)}
 							onclick={() => activate(item)}
 						>
-							<span class="font-display text-ink truncate text-[15px] font-semibold tracking-tight">
+							<span class="truncate font-display text-[15px] font-semibold tracking-tight text-ink">
 								{#each splitByRanges(item.label, item.ranges) as seg (seg.text + seg.hit)}
 									{#if seg.hit}
 										<mark class="bg-transparent text-accent">{seg.text}</mark>
@@ -265,7 +268,7 @@
 									{/if}
 								{/each}
 							</span>
-							<span class="font-mono text-ink-dim shrink-0 text-[10px] tracking-[0.25em] uppercase">
+							<span class="shrink-0 font-mono text-[10px] tracking-[0.25em] text-ink-dim uppercase">
 								{kindLabel[item.kind]}
 							</span>
 						</div>
@@ -274,7 +277,9 @@
 			</div>
 
 			<!-- Footer hints -->
-			<div class="border-border text-ink-dim font-mono flex items-center justify-between gap-4 border-t px-4 py-2 text-[10px] tracking-widest uppercase">
+			<div
+				class="flex items-center justify-between gap-4 border-t border-border px-4 py-2 font-mono text-[10px] tracking-widest text-ink-dim uppercase"
+			>
 				<span class="flex items-center gap-3">
 					<span>↑↓ navigate</span>
 					<span>↵ select</span>

@@ -19,7 +19,7 @@
 </script>
 
 <header
-	class="border-border bg-bg/80 sticky top-0 z-40 border-b backdrop-blur-md backdrop-saturate-150"
+	class="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur-md backdrop-saturate-150"
 >
 	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
 		<Logo />
@@ -31,13 +31,13 @@
 				<a
 					href={link.href}
 					aria-current={active ? 'page' : undefined}
-					class="font-mono relative px-3 py-1.5 text-xs tracking-[0.2em] uppercase transition-colors duration-200 {active
+					class="relative px-3 py-1.5 font-mono text-xs tracking-[0.2em] uppercase transition-colors duration-200 {active
 						? 'text-accent'
 						: 'text-ink-muted hover:text-ink'}"
 				>
 					{link.label}
 					{#if active}
-						<span class="bg-accent absolute right-3 -bottom-0.5 left-3 h-px" aria-hidden="true"
+						<span class="absolute right-3 -bottom-0.5 left-3 h-px bg-accent" aria-hidden="true"
 						></span>
 					{/if}
 				</a>
@@ -55,10 +55,10 @@
 				aria-expanded={mobileOpen}
 				aria-controls="mobile-nav"
 				aria-label="Toggle menu"
-				class="border-border bg-surface hover:border-accent focus-visible:border-accent inline-flex size-9 items-center justify-center border-2 transition-colors md:hidden"
+				class="inline-flex size-9 items-center justify-center border-2 border-border bg-surface transition-colors hover:border-accent focus-visible:border-accent md:hidden"
 			>
 				<svg
-					class="text-ink size-4"
+					class="size-4 text-ink"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
@@ -78,11 +78,7 @@
 
 	<!-- Mobile menu panel -->
 	{#if mobileOpen}
-		<nav
-			id="mobile-nav"
-			aria-label="Primary mobile"
-			class="border-border bg-bg border-t md:hidden"
-		>
+		<nav id="mobile-nav" aria-label="Primary mobile" class="border-t border-border bg-bg md:hidden">
 			<ul class="flex flex-col px-6 py-3 sm:px-10">
 				{#each links as link (link.href)}
 					{@const active = isActive(link.href)}
@@ -91,7 +87,7 @@
 							href={link.href}
 							aria-current={active ? 'page' : undefined}
 							onclick={() => (mobileOpen = false)}
-							class="font-mono block py-3 text-sm tracking-[0.2em] uppercase transition-colors {active
+							class="block py-3 font-mono text-sm tracking-[0.2em] uppercase transition-colors {active
 								? 'text-accent'
 								: 'text-ink-muted hover:text-ink'}"
 						>

@@ -47,51 +47,48 @@
 
 <section class="mx-auto max-w-3xl px-6 py-20 sm:px-10 sm:py-24">
 	<header class="mb-12">
-		<p
-			class="text-ink-muted font-mono to-reveal text-xs tracking-[0.3em] uppercase"
-			use:reveal
-		>
+		<p class="to-reveal font-mono text-xs tracking-[0.3em] text-ink-muted uppercase" use:reveal>
 			/ contact
 		</p>
 		<h1
-			class="font-display to-reveal mt-4 text-6xl leading-[0.95] font-extrabold tracking-tight sm:text-8xl"
+			class="to-reveal mt-4 font-display text-6xl leading-[0.95] font-extrabold tracking-tight sm:text-8xl"
 			use:reveal={{ delay: 80 }}
 		>
 			Let's<br /><span class="text-accent">talk.</span>
 		</h1>
 		<p
-			class="text-ink-muted to-reveal mt-8 max-w-xl text-lg leading-relaxed"
+			class="to-reveal mt-8 max-w-xl text-lg leading-relaxed text-ink-muted"
 			use:reveal={{ delay: 160 }}
 		>
-			The fastest way to reach me is email. Drop a note about a project, a question, or just
-			to say hi — I read everything, even if it takes a day or two to reply.
+			The fastest way to reach me is email. Drop a note about a project, a question, or just to say
+			hi — I read everything, even if it takes a day or two to reply.
 		</p>
 	</header>
 
 	<!-- Email card -->
 	<div
-		class="to-reveal border-border bg-surface relative border-2 p-6 sm:p-7"
+		class="to-reveal relative border-2 border-border bg-surface p-6 sm:p-7"
 		use:reveal={{ delay: 240 }}
 	>
-		<p class="font-mono text-ink-dim text-[10px] tracking-[0.3em] uppercase">
+		<p class="font-mono text-[10px] tracking-[0.3em] text-ink-dim uppercase">
 			Email — fastest path
 		</p>
 		<div class="mt-3 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 			<span
 				id="email-display"
-				class="font-display text-ink text-xl font-bold tracking-tight break-all sm:text-2xl"
+				class="font-display text-xl font-bold tracking-tight break-all text-ink sm:text-2xl"
 			>
 				{emailAddress}
 			</span>
 			<button
 				type="button"
 				onclick={copyEmail}
-				class="border-border bg-bg hover:border-ink focus-visible:border-ink relative inline-flex shrink-0 items-center gap-2 border-2 px-3 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
+				class="relative inline-flex shrink-0 items-center gap-2 border-2 border-border bg-bg px-3 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors hover:border-ink focus-visible:border-ink"
 				aria-label="Copy email address"
 			>
 				{#if copied}
 					<svg
-						class="text-accent size-4"
+						class="size-4 text-accent"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
@@ -124,7 +121,7 @@
 			{#if copied}Email copied to clipboard.{/if}
 		</p>
 		{#if copyError}
-			<p class="text-ink-muted mt-3 font-mono text-[10px] tracking-widest uppercase">
+			<p class="mt-3 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
 				{copyError}
 			</p>
 		{/if}
@@ -138,7 +135,7 @@
 		<a
 			href={mailtoUrl}
 			use:magnetic={{ strength: 0.18, range: 130 }}
-			class="border-ink bg-accent text-accent-ink inline-flex items-center gap-2 border-2 px-5 py-3 transition-[box-shadow,transform] duration-200 hover:[box-shadow:var(--shadow-hard-sm)] hover:-translate-x-0.5 hover:-translate-y-0.5"
+			class="inline-flex items-center gap-2 border-2 border-ink bg-accent px-5 py-3 text-accent-ink transition-[box-shadow,transform] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:[box-shadow:var(--shadow-hard-sm)]"
 		>
 			<span aria-hidden="true">→</span>
 			<span>Email me</span>
@@ -147,9 +144,7 @@
 
 	<!-- Channels -->
 	<div class="to-reveal mt-16" use:reveal={{ delay: 400 }}>
-		<p class="font-mono text-ink-dim mb-4 text-[10px] tracking-[0.3em] uppercase">
-			Or reach me on
-		</p>
+		<p class="mb-4 font-mono text-[10px] tracking-[0.3em] text-ink-dim uppercase">Or reach me on</p>
 		<ul class="flex flex-wrap items-center gap-6 font-mono text-xs tracking-wider uppercase">
 			{#each channels as link (link.key)}
 				<li>
@@ -157,7 +152,7 @@
 						href={link.href}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-ink hover:text-accent inline-flex items-center gap-1.5 transition-colors"
+						class="inline-flex items-center gap-1.5 text-ink transition-colors hover:text-accent"
 					>
 						{link.label}
 						<span aria-hidden="true" class="text-ink-dim">↗</span>
@@ -169,7 +164,7 @@
 
 	<!-- Response / availability note -->
 	<p
-		class="text-ink-dim to-reveal mt-16 font-mono text-[10px] tracking-[0.25em] uppercase"
+		class="to-reveal mt-16 font-mono text-[10px] tracking-[0.25em] text-ink-dim uppercase"
 		use:reveal={{ delay: 480 }}
 	>
 		Usually replies in 1–2 days · Lagos · UTC+1 · Open to work

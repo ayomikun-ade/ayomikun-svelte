@@ -22,7 +22,11 @@
 
 <!-- Filter tabs: a button group with aria-pressed since they filter content
      (rather than swap visible panels). -->
-<div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter projects by category">
+<div
+	class="flex flex-wrap items-center gap-2"
+	role="group"
+	aria-label="Filter projects by category"
+>
 	{#each categories as cat (cat.value)}
 		{@const isActive = active === cat.value}
 		{@const count = countFor(cat.value)}
@@ -31,12 +35,12 @@
 			onclick={() => (active = cat.value)}
 			aria-pressed={isActive}
 			disabled={count === 0}
-			class="border-border font-mono group inline-flex items-center gap-2 border-2 px-3 py-1.5 text-[10px] tracking-[0.25em] uppercase transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-30"
+			class="group inline-flex items-center gap-2 border-2 border-border px-3 py-1.5 font-mono text-[10px] tracking-[0.25em] uppercase transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-30"
 			class:active-tab={isActive}
 			class:inactive-tab={!isActive}
 		>
 			<span>{cat.label}</span>
-			<span class="text-ink-dim group-aria-pressed:text-accent-ink/70 font-normal tabular-nums">
+			<span class="font-normal text-ink-dim tabular-nums group-aria-pressed:text-accent-ink/70">
 				{count}
 			</span>
 		</button>
@@ -62,7 +66,7 @@
 </div>
 
 {#if filtered.length === 0}
-	<p class="text-ink-muted font-mono mt-10 text-sm tracking-wider uppercase">
+	<p class="mt-10 font-mono text-sm tracking-wider text-ink-muted uppercase">
 		No projects in this category yet.
 	</p>
 {/if}

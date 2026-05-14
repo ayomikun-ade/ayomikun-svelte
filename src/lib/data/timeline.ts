@@ -1,6 +1,10 @@
 /**
- * Career timeline — reverse-chronological. Placeholder entries; replace with
- * real milestones. Shape is stable; the About page renders whatever's here.
+ * Career timeline — reverse-chronological.
+ *
+ * Entries are inferred from the `since` years in skills.ts — they track the
+ * learning progression, not employment history. Adjust titles, subtitles, and
+ * copy to match your actual story (and add real roles where they belong).
+ * Shape is stable; the About page renders whatever's here.
  */
 
 export type TimelineEntry = {
@@ -13,38 +17,44 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
 	{
 		year: 2026,
-		title: 'HNG Frontend Wizards',
-		subtitle: 'Stage 5b — this portfolio',
-		body: 'Interactive developer portfolio built with SvelteKit, focused on motion feel, performance, and a command-driven UI.'
+		title: 'Facing the real world',
+		subtitle: 'Looking beyond personal projects',
+		body: 'Planning to step into the professional world, applying skills to real-world projects, collaborating with teams, and continuing to learn and grow as a frontend engineer.'
 	},
 	{
 		year: 2025,
-		title: 'Shipping with Svelte 5',
-		subtitle: 'Runes mode, in production',
-		body: 'Moved primary stack to Svelte 5 + SvelteKit. Built tooling around runed stores, view transitions, and IntersectionObserver-driven motion.'
+		title: 'Going deep on motion',
+		subtitle: 'GSAP, scroll-driven animation',
+		body: 'Started treating animation as craft rather than decoration — GSAP, scroll-driven sequences, and the feel of transitions between states.'
 	},
 	{
 		year: 2024,
-		title: 'WebGL & shader experiments',
-		subtitle: 'Side track',
-		body: 'Picked up GLSL, Three.js, and the Web Audio API to push beyond DOM-bound interaction. Output: a handful of small generative experiments.'
+		title: 'Modern production stack',
+		subtitle: 'TypeScript, Next.js, the toolchain',
+		body: 'Adopted TypeScript and Next.js as the daily stack, alongside Framer Motion, Vitest, ESLint, pnpm, and shadcn. Frontend work got type-safe and properly tooled.'
 	},
 	{
 		year: 2023,
-		title: 'Frontend engineer',
-		subtitle: 'First role focused on interaction',
-		body: 'Joined a small team building a product-grade web app. Owned the design-system and motion-engineering side of the codebase.'
+		title: 'Building real applications',
+		subtitle: 'Beyond static pages',
+		body: 'Moved past static sites into stateful apps — client-side persistence with IndexedDB and more deliberate app architecture.'
 	},
 	{
-		year: 2021,
-		title: 'Pivoted into frontend',
-		subtitle: 'Out of generalist work',
-		body: 'Spent a year going deep on TypeScript, React patterns, accessibility, and the craft of UI animation. Decided the front of the stack was home.'
+		year: 2022,
+		title: 'Got serious about frontend',
+		subtitle: 'React, tooling, testing, a11y',
+		body: 'The pivot year: React and Tailwind for building, Vite and a proper Git workflow for shipping, Playwright for testing, and accessibility as a default rather than an afterthought.'
 	},
 	{
-		year: 2018,
+		year: 2020,
+		title: 'Started caring about design',
+		subtitle: 'Figma',
+		body: 'Picked up Figma and began thinking about interface design — not just implementing screens, but shaping how they should look and feel.'
+	},
+	{
+		year: 2017,
 		title: 'First line of code',
-		subtitle: 'School curiosity',
-		body: 'Started with HTML, CSS, then JavaScript. Built a music player that probably leaked memory. Worth it.'
+		subtitle: 'HTML, CSS, Python',
+		body: 'Started with HTML and CSS, then Python. The web is what stuck — and JavaScript followed soon after.'
 	}
 ];

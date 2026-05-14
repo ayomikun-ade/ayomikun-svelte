@@ -22,10 +22,12 @@
 				aria-label={link.label}
 				class:icon-link={variant === 'icon'}
 				class:label-link={variant === 'label'}
-				class="hover:text-accent group inline-flex items-center gap-2 transition-colors"
+				class="group inline-flex items-center gap-2 transition-colors hover:text-accent"
 			>
 				{#if variant === 'icon'}
-					<span class="border-border group-hover:border-accent inline-flex size-9 items-center justify-center border-2 transition-colors">
+					<span
+						class="inline-flex size-9 items-center justify-center border-2 border-border transition-colors group-hover:border-accent"
+					>
 						{#if link.key === 'github'}
 							<svg viewBox="0 0 24 24" class="size-4" fill="currentColor" aria-hidden="true">
 								<path

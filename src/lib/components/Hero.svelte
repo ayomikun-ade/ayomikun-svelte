@@ -29,26 +29,29 @@
 	});
 </script>
 
-<section
-	class="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-center overflow-hidden"
->
+<!-- Sized to its content (+ padding) rather than forced to fill the viewport —
+     avoids the dead vertical space that justify-center used to pad around it. -->
+<section class="relative isolate overflow-hidden">
 	<HeroBackground {mx} {my} />
 
 	<div class="relative z-10 mx-auto w-full max-w-6xl px-6 py-20 sm:px-10 sm:py-24">
 		<!-- Status / tagline -->
-		<p class="reveal text-ink-muted font-mono text-xs tracking-[0.3em] uppercase" style="--d: 0ms">
-			<span class="bg-accent mr-2 inline-block size-1.5 align-middle"></span>
+		<p class="reveal font-mono text-xs tracking-[0.3em] text-ink-muted uppercase" style="--d: 0ms">
+			<span class="mr-2 inline-block size-1.5 bg-accent align-middle"></span>
 			Available for work · Lagos · 2026
 		</p>
 
 		<!-- Headline -->
 		<h1
-			class="font-display mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight sm:text-7xl md:text-8xl"
+			class="mt-6 font-display text-5xl leading-[0.95] font-extrabold tracking-tight sm:text-7xl md:text-8xl"
 		>
 			<span class="reveal block" style="--d: 100ms">
 				I'm <span class="text-accent">Ayomikun</span>.
 			</span>
-			<span class="reveal text-ink-muted mt-3 block text-3xl font-medium sm:text-5xl md:text-6xl" style="--d: 220ms">
+			<span
+				class="reveal mt-3 block text-3xl font-medium text-ink-muted sm:text-5xl md:text-6xl"
+				style="--d: 220ms"
+			>
 				I build interfaces
 			</span>
 			<span class="reveal block" style="--d: 340ms">
@@ -57,10 +60,10 @@
 		</h1>
 
 		<!-- Intro -->
-		<p class="reveal text-ink-muted mt-10 max-w-xl text-lg leading-relaxed" style="--d: 480ms">
+		<p class="reveal mt-10 max-w-xl text-lg leading-relaxed text-ink-muted" style="--d: 480ms">
 			Frontend engineer working at the intersection of interaction design, animation, and
-			performance. Currently shipping with SvelteKit, obsessing over the milliseconds between
-			intent and feedback.
+			performance. Currently shipping with SvelteKit, obsessing over the milliseconds between intent
+			and feedback.
 		</p>
 
 		<!-- CTAs -->
@@ -70,7 +73,7 @@
 		>
 			<a
 				href="/work"
-				class="border-ink bg-accent text-accent-ink inline-flex items-center gap-2 border-2 px-5 py-3 transition-[box-shadow,transform] duration-200 hover:[box-shadow:var(--shadow-hard-sm)] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-none"
+				class="inline-flex items-center gap-2 border-2 border-ink bg-accent px-5 py-3 text-accent-ink transition-[box-shadow,transform] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:[box-shadow:var(--shadow-hard-sm)] active:translate-x-0 active:translate-y-0 active:shadow-none"
 			>
 				<span>See work</span>
 				<span aria-hidden="true">→</span>
@@ -78,7 +81,7 @@
 			<a
 				href={resumeUrl}
 				download
-				class="border-border text-ink hover:border-ink inline-flex items-center gap-2 border-2 px-5 py-3 transition-colors"
+				class="inline-flex items-center gap-2 border-2 border-border px-5 py-3 text-ink transition-colors hover:border-ink"
 			>
 				<span aria-hidden="true">↓</span>
 				<span>Resume</span>
@@ -122,5 +125,4 @@
 			transform: scaleX(1);
 		}
 	}
-
 </style>

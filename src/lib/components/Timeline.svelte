@@ -11,21 +11,23 @@
 			use:reveal={{ delay: Math.min(i * 60, 300) }}
 		>
 			<!-- Year marker -->
-			<div class="font-display text-ink relative col-start-1 row-span-3 text-2xl font-black tabular-nums sm:text-3xl">
+			<div
+				class="relative col-start-1 row-span-3 font-display text-2xl font-black text-ink tabular-nums sm:text-3xl"
+			>
 				{entry.year}
 			</div>
 
 			<!-- Title row -->
 			<div class="col-start-2 flex flex-col gap-1">
-				<h3 class="font-display text-ink text-lg font-bold tracking-tight sm:text-xl">
+				<h3 class="font-display text-lg font-bold tracking-tight text-ink sm:text-xl">
 					{entry.title}
 				</h3>
 				{#if entry.subtitle}
-					<p class="font-mono text-ink-dim text-[10px] tracking-[0.25em] uppercase">
+					<p class="font-mono text-[10px] tracking-[0.25em] text-ink-dim uppercase">
 						{entry.subtitle}
 					</p>
 				{/if}
-				<p class="text-ink-muted mt-2 max-w-xl text-sm leading-relaxed sm:text-base">
+				<p class="mt-2 max-w-xl text-sm leading-relaxed text-ink-muted sm:text-base">
 					{entry.body}
 				</p>
 			</div>

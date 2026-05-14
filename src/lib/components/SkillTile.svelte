@@ -8,9 +8,9 @@
 </script>
 
 <div
-	class="tile border-border bg-surface hover:border-ink relative flex h-full flex-col justify-between gap-3 border-2 p-4 transition-colors duration-200"
+	class="tile relative flex h-full flex-col justify-between gap-3 border-2 border-border bg-surface p-4 transition-colors duration-200 hover:border-ink"
 >
-	<span class="font-mono text-ink-dim text-[9px] tracking-[0.3em] uppercase">
+	<span class="font-mono text-[9px] tracking-[0.3em] text-ink-dim uppercase">
 		{categoryLabel}
 	</span>
 
@@ -19,7 +19,7 @@
 	</span>
 
 	{#if years !== null}
-		<span class="font-mono text-ink-muted self-end text-[10px] tracking-wider tabular-nums">
+		<span class="self-end font-mono text-[10px] tracking-wider text-ink-muted tabular-nums">
 			{years}y
 		</span>
 	{/if}
@@ -27,7 +27,9 @@
 
 <style>
 	.tile {
-		transition: border-color 0.2s var(--ease-drift), transform 0.2s var(--ease-snap);
+		transition:
+			border-color 0.2s var(--ease-drift),
+			transform 0.2s var(--ease-snap);
 	}
 	.tile:hover {
 		transform: translate(-2px, -2px);

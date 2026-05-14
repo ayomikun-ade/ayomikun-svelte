@@ -1,17 +1,17 @@
 /**
  * Projects data layer.
  *
- * ⚠️ Placeholder entries below — same shape as the real data, just stand-in
- * titles/copy. Swap titles, taglines, descriptions, tech, and `links` with
- * real values; the rest (filtering, routing, command palette) needs no change.
+ * Cover images: `cover` is the bare filename (no extension) of an image in
+ * src/lib/assets/portfolio/ — resolved through enhanced-img by covers.ts.
+ * Missing file → styled placeholder renders instead.
  *
  * Consumed by:
  *   - /work index (ProjectsGrid + ProjectCard)
- *   - /work/[slug] detail page (Stage 5)
- *   - command palette `projects` / `open <slug>` commands (Stage 8)
+ *   - /work/[slug] detail page
+ *   - command palette `projects` / `open <slug>` commands
  */
 
-export type ProjectCategoryValue = 'web-app' | 'tool' | 'experiment' | 'open-source';
+export type ProjectCategoryValue = 'web-app' | 'tool' | 'experiment';
 export type FilterValue = 'all' | ProjectCategoryValue;
 
 export type Project = {
@@ -24,7 +24,8 @@ export type Project = {
 	year: number;
 	category: ProjectCategoryValue;
 	tech: string[];
-	/** Optional image URL (under /static). Falls back to a styled placeholder. */
+	/** Bare filename (no extension) of an image in src/lib/assets/portfolio/.
+	 *  Resolved via covers.ts → enhanced-img. Falls back to a styled placeholder. */
 	cover?: string;
 	coverAlt?: string;
 	links: {
@@ -39,88 +40,150 @@ export const categories: { value: FilterValue; label: string }[] = [
 	{ value: 'all', label: 'All' },
 	{ value: 'web-app', label: 'Web apps' },
 	{ value: 'tool', label: 'Tools' },
-	{ value: 'experiment', label: 'Experiments' },
-	{ value: 'open-source', label: 'Open source' }
+	{ value: 'experiment', label: 'Experiments' }
 ];
 
 export const categoryLabel: Record<ProjectCategoryValue, string> = {
 	'web-app': 'Web app',
 	tool: 'Tool',
-	experiment: 'Experiment',
-	'open-source': 'Open source'
+	experiment: 'Experiment'
 };
 
 export const projects: Project[] = [
 	{
-		slug: 'stagecraft',
-		title: 'Stagecraft',
-		tagline: 'A presentation tool that animates like a film, edits like a doc.',
+		slug: 'nerdwork',
+		title: 'Nerdwork',
+		tagline: 'A creative entertainment studio and fan community — home of the annual Comic-Con.',
 		description:
-			'A keyboard-first presentation editor with scene transitions, magnetic alignment guides, and offline-first sync. Built around a custom timeline engine that compiles slides to a single declarative track.',
+			'Nerdwork is the home for fans: a creative entertainment studio & thriving community best known for its annual Comic-Con. They are the intersection of storytelling, tech, culture, and fandom.',
 		year: 2025,
 		category: 'web-app',
-		tech: ['SvelteKit', 'TypeScript', 'WebGL', 'IndexedDB', 'Tailwind'],
-		links: { live: 'https://example.com/stagecraft', github: 'https://github.com/' },
+		tech: ['Next.js', 'TypeScript', 'TanStack Query'],
+		cover: 'nerdwork-port',
+		coverAlt: 'Screenshot of the Nerdwork website',
+		links: { live: 'https://www.nerdworkng.com/' },
 		featured: true
 	},
 	{
-		slug: 'lacuna-ui',
-		title: 'Lacuna UI',
-		tagline: 'Headless Svelte primitives with a neobrutalist preset.',
+		slug: 'resolve-vote',
+		title: 'Resolve.vote',
+		tagline: 'Transparent voting for community governance and decision resolution.',
 		description:
-			'A11y-first headless components (combobox, dialog, menu, listbox) for Svelte 5 runes, shipped with an optional neobrutalist theme. Tree-shakable, zero-runtime CSS, full keyboard semantics tested under NVDA and VoiceOver.',
+			'A transparent voting system designed for community governance and decision resolution.',
 		year: 2025,
-		category: 'open-source',
-		tech: ['Svelte 5', 'TypeScript', 'CSS', 'a11y'],
-		links: { github: 'https://github.com/' }
+		category: 'web-app',
+		tech: ['Next.js', 'TypeScript', 'TanStack Query'],
+		cover: 'resolve-port',
+		coverAlt: 'Screenshot of the Resolve.vote app',
+		links: { live: 'https://resolve.vote/' }
 	},
 	{
-		slug: 'polyrhythm',
-		title: 'Polyrhythm',
-		tagline: 'A generative step sequencer that argues with itself.',
+		slug: 'audiophile',
+		title: 'Audiophile',
+		tagline: 'A premium e-commerce experience for high-fidelity audio gear.',
 		description:
-			'A browser-based polyrhythmic sequencer that uses Markov chains to mutate patterns in real time. Audio runs in an AudioWorklet for sample-accurate timing; the UI runs on Svelte transitions for a fluid loop view.',
+			'A premium e-commerce experience for high-fidelity audio equipment, featuring a seamless cart system.',
 		year: 2024,
-		category: 'experiment',
-		tech: ['Svelte', 'Web Audio', 'AudioWorklet', 'Canvas'],
-		links: { live: 'https://example.com/polyrhythm', github: 'https://github.com/' }
+		category: 'web-app',
+		tech: ['Next.js', 'Convex', 'TypeScript', 'Framer Motion'],
+		cover: 'audiophile-port',
+		coverAlt: 'Screenshot of the Audiophile e-commerce site',
+		links: {
+			live: 'https://audiophile-five-hazel.vercel.app/',
+			github: 'https://github.com/ayomikun-ade/audiophile'
+		}
 	},
 	{
-		slug: 'bytelift',
-		title: 'Bytelift',
-		tagline: 'A bundle inspector that points at the file you should delete.',
+		slug: 'cds-ams',
+		title: 'CDS Attendance Management System',
+		tagline: 'Geofenced NYSC CDS attendance with real-time location verification.',
 		description:
-			'A browser extension and CLI that audits production JS bundles, attributes weight to source modules via sourcemaps, and emits a prioritised hit list. Used in CI to fail PRs that exceed budget per route.',
-		year: 2024,
+			'A secure, geofenced web app that automates NYSC CDS attendance with real-time location verification and automated eligibility reporting.',
+		year: 2025,
 		category: 'tool',
-		tech: ['TypeScript', 'Rollup', 'WebExtension API', 'Vite'],
-		links: { github: 'https://github.com/' },
+		tech: ['Next.js', 'Convex', 'Clerk', 'Geofencing', 'shadcn/ui', 'TypeScript'],
+		cover: 'cds-port',
+		coverAlt: 'Screenshot of the CDS Attendance Management System',
+		links: {
+			live: 'https://edb-ams.vercel.app/',
+			github: 'https://github.com/ayomikun-ade/cds-ams'
+		},
 		featured: true
 	},
 	{
-		slug: 'driftport',
-		title: 'Driftport',
-		tagline: 'Local-tunnel port forwarding over WebSocket, no auth juggling.',
+		slug: 'murmer',
+		title: 'Murmer',
+		tagline: 'An invite-based anonymous confession board with real-time updates.',
 		description:
-			'A self-hostable alternative to ngrok built on raw WebSocket frames. Single-binary server, single-flag client, mTLS for trusted devices, opt-in HTTP request inspection.',
+			'An invite-based anonymous confession board featuring real-time updates, anonymous posting and reaction support.',
 		year: 2024,
-		category: 'tool',
-		tech: ['Go', 'TypeScript', 'WebSocket', 'CLI'],
-		links: { github: 'https://github.com/' }
+		category: 'web-app',
+		tech: ['Next.js', 'Convex', 'TypeScript', 'Tailwind'],
+		cover: 'murmer-port',
+		coverAlt: 'Screenshot of the Murmer confession board',
+		links: {
+			live: 'https://murmer.ayomikun.me/',
+			github: 'https://github.com/ayomikun-ade/secret-ink'
+		}
 	},
 	{
-		slug: 'glimmer',
-		title: 'Glimmer',
-		tagline: 'A CSS gradient playground that exports the actual shaders.',
+		slug: 'valentine-verses',
+		title: 'Valentine Verses',
+		tagline: 'An AI poetry generator for instant, personalized romantic verses.',
 		description:
-			'A live editor for CSS gradients and WebGL fragment shaders, side-by-side. Outputs copy-ready CSS, Tailwind utilities, or a GLSL shader for use in Three.js / R3F scenes.',
-		year: 2023,
+			'An AI-powered poetry generator leveraging Groq Cloud for instant, personalized romantic verses.',
+		year: 2025,
 		category: 'experiment',
-		tech: ['Svelte', 'WebGL', 'GLSL', 'Vite'],
-		links: { live: 'https://example.com/glimmer' }
+		tech: ['React', 'Framer Motion', 'Groq Cloud', 'FastAPI'],
+		cover: 'valentine-port',
+		coverAlt: 'Screenshot of the Valentine Verses generator',
+		links: {
+			live: 'https://valentine-verses.vercel.app/',
+			github: 'https://github.com/ayomikun-ade/valentineverses.ui'
+		}
+	},
+	{
+		slug: 'aurela',
+		title: 'Aurela',
+		tagline: 'A visually immersive landing page for a skincare agency.',
+		description:
+			'A visually immersive landing page for a skin care agency, utilizing advanced motion primitives.',
+		year: 2024,
+		category: 'experiment',
+		tech: ['Next.js', 'Framer Motion'],
+		cover: 'aurela-port',
+		coverAlt: 'Screenshot of the Aurela landing page',
+		links: {
+			live: 'https://aurela.pxxl.click/',
+			github: 'https://github.com/ayomikun-ade/aurela'
+		}
+	},
+	{
+		slug: 'fixflow',
+		title: 'FixFlow',
+		tagline: 'Streamlined issue tracking for property management.',
+		description:
+			'A streamlined issue tracking application for property management with real-time status updates.',
+		year: 2024,
+		category: 'tool',
+		tech: ['Next.js', 'TypeScript'],
+		cover: 'fixflow-port',
+		coverAlt: 'Screenshot of the FixFlow issue tracker',
+		links: {
+			live: 'https://fix-flow-react.vercel.app/',
+			github: 'https://github.com/ayomikun-ade/fix-flow-react'
+		}
 	}
 ];
 
 export function projectBySlug(slug: string): Project | undefined {
 	return projects.find((p) => p.slug === slug);
+}
+
+/** Year span across all projects — drives the /work page subheading. */
+export function projectYearRange(): string {
+	const years = projects.map((p) => p.year);
+	const min = Math.min(...years);
+	const max = Math.max(...years);
+	return min === max ? `${min}` : `${min} – ${max}`;
 }
