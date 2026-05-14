@@ -2,6 +2,7 @@ import { goto } from '$app/navigation';
 import { projects } from '$lib/data/projects';
 import { socials, resumeUrl } from '$lib/data/socials';
 import { theme } from '$lib/stores/theme.svelte';
+import { reducedMotion } from '$lib/stores/motion.svelte';
 
 export type PaletteKind = 'page' | 'project' | 'action';
 
@@ -118,6 +119,27 @@ const actions: PaletteItem[] = [
 		kind: 'action',
 		keywords: ['who', 'identity', 'about'],
 		run: () => goto('/about')
+	},
+	{
+		id: 'action-motion-reduce',
+		label: 'Motion — reduce (turn off animations)',
+		kind: 'action',
+		keywords: ['accessibility', 'a11y', 'animation', 'off'],
+		run: () => reducedMotion.set('reduce')
+	},
+	{
+		id: 'action-motion-allow',
+		label: 'Motion — allow (override system preference)',
+		kind: 'action',
+		keywords: ['accessibility', 'a11y', 'animation', 'on'],
+		run: () => reducedMotion.set('allow')
+	},
+	{
+		id: 'action-motion-auto',
+		label: 'Motion — auto (follow system preference)',
+		kind: 'action',
+		keywords: ['accessibility', 'a11y', 'animation', 'default'],
+		run: () => reducedMotion.set('auto')
 	},
 	...socials
 		.filter((s) => s.key !== 'email')

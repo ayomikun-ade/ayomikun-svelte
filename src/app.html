@@ -19,20 +19,25 @@
 		     = true), which 404s for nested routes like /work/[slug]. -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<script>
-			// Resolve theme before paint (FOUC prevention) and mark JS-enabled so
-			// `.js .to-reveal` reveal-on-scroll styles activate. Without JS, content
-			// stays fully visible — progressive enhancement.
+			// Resolve theme + motion preference before paint (FOUC prevention) and
+			// mark JS-enabled so `.js .to-reveal` reveal-on-scroll styles activate.
+			// Without JS, content stays fully visible — progressive enhancement.
 			(function () {
 				document.documentElement.classList.add('js');
 				try {
-					var stored = localStorage.getItem('theme');
 					var theme =
-						stored === 'light' || stored === 'dark'
-							? stored
+						localStorage.getItem('theme') === 'light' ||
+						localStorage.getItem('theme') === 'dark'
+							? localStorage.getItem('theme')
 							: window.matchMedia('(prefers-color-scheme: light)').matches
 								? 'light'
 								: 'dark';
 					document.documentElement.setAttribute('data-theme', theme);
+
+					var motion = localStorage.getItem('motion-pref');
+					if (motion === 'reduce' || motion === 'allow') {
+						document.documentElement.dataset.motion = motion;
+					}
 				} catch (e) {
 					/* localStorage blocked — keep server-rendered default */
 				}

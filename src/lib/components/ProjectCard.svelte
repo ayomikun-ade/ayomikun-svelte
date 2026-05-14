@@ -50,7 +50,7 @@
 			</span>
 		</div>
 
-		<h3 class="font-display text-2xl font-bold tracking-tight">
+		<h2 class="font-display text-2xl font-bold tracking-tight">
 			<!-- The card-wide hit area: pseudo-element extends the link over the whole article. -->
 			<a
 				href="/work/{project.slug}"
@@ -58,7 +58,7 @@
 			>
 				{project.title}
 			</a>
-		</h3>
+		</h2>
 
 		<p class="text-ink-muted text-sm leading-relaxed">{project.tagline}</p>
 
