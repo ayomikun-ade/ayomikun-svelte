@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import Logo from './Logo.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
+	import PaletteTrigger from './PaletteTrigger.svelte';
 
 	const links = [
 		{ href: '/work', label: 'Work' },
@@ -44,6 +45,7 @@
 		</nav>
 
 		<div class="flex items-center gap-2">
+			<PaletteTrigger />
 			<ThemeToggle />
 
 			<!-- Mobile menu trigger -->

@@ -4,6 +4,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import SkipNav from '$lib/components/SkipNav.svelte';
+	import CommandPalette from '$lib/components/CommandPalette.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
 	import { onNavigate } from '$app/navigation';
 
@@ -41,3 +42,5 @@
 </main>
 
 <Footer />
+
+<CommandPalette />
