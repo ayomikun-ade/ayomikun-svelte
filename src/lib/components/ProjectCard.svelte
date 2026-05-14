@@ -11,10 +11,12 @@
 <article
 	class="card border-border bg-surface relative isolate flex h-full flex-col border-2 transition-[transform,box-shadow] duration-200 ease-[var(--ease-snap)]"
 >
-	<!-- Cover (placeholder until real images land in /static) -->
+	<!-- Cover (placeholder until real images land in /static).
+	     `view-transition-name` pairs this with the detail page hero cover for a
+	     cinematic morph when navigating from grid → /work/[slug]. -->
 	<div
 		class="cover relative aspect-[16/10] overflow-hidden border-b-2 border-inherit"
-		style="--h: {hue}"
+		style="--h: {hue}; view-transition-name: project-cover-{project.slug};"
 		aria-hidden={project.cover ? undefined : 'true'}
 	>
 		{#if project.cover}

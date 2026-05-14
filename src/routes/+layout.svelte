@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import SkipNav from '$lib/components/SkipNav.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
+	import { onNavigate } from '$app/navigation';
 
 	let { children } = $props();
 
@@ -12,6 +13,19 @@
 	// in app.html (which runs before Svelte hydrates).
 	$effect(() => {
 		theme.sync();
+	});
+
+	// Cinematic page transitions via the View Transitions API.
+	// Browsers without support skip silently; named elements (e.g. project covers)
+	// crossfade/morph between routes for the grid → detail effect.
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
 	});
 </script>
 

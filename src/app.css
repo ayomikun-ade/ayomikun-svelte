@@ -133,6 +133,14 @@ html[data-theme='light'] {
 	}
 }
 
+/* View Transitions — drives the route-to-route cinematic effect.
+   The page-level crossfade is tuned a touch slower than Chrome's default. */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.35s;
+	animation-timing-function: var(--ease-drift);
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
@@ -141,5 +149,10 @@ html[data-theme='light'] {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
+	}
+
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
 	}
 }
