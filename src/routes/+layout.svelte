@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import SkipNav from '$lib/components/SkipNav.svelte';
@@ -30,9 +29,7 @@
 	});
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<!-- favicon is set in app.html → /favicon.svg (static asset, stable URL) -->
 
 <SkipNav />
 <Header />

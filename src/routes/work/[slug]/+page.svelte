@@ -102,6 +102,8 @@
 				src={project.cover}
 				alt={project.coverAlt ?? project.title}
 				class="size-full object-cover"
+				fetchpriority="high"
+				decoding="async"
 			/>
 		{:else}
 			<div class="placeholder absolute inset-0">

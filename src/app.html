@@ -14,7 +14,10 @@
 			content="Interactive developer portfolio built with SvelteKit."
 		/>
 		<meta property="og:type" content="website" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<!-- Absolute path so it resolves correctly on every route. SvelteKit's
+		     %sveltekit.assets% expands to a relative path by default (paths.relative
+		     = true), which 404s for nested routes like /work/[slug]. -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<script>
 			// Resolve theme before paint (FOUC prevention) and mark JS-enabled so
 			// `.js .to-reveal` reveal-on-scroll styles activate. Without JS, content
@@ -37,7 +40,11 @@
 		</script>
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="noise">
+	<body
+		data-sveltekit-preload-data="hover"
+		data-sveltekit-preload-code="hover"
+		class="noise"
+	>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
