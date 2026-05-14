@@ -16,9 +16,11 @@
 		<meta property="og:type" content="website" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<script>
-			// Resolve theme before paint to prevent FOUC. Reads localStorage first,
-			// falls back to system preference. Mirrors logic in $lib/stores/theme.svelte.ts.
+			// Resolve theme before paint (FOUC prevention) and mark JS-enabled so
+			// `.js .to-reveal` reveal-on-scroll styles activate. Without JS, content
+			// stays fully visible — progressive enhancement.
 			(function () {
+				document.documentElement.classList.add('js');
 				try {
 					var stored = localStorage.getItem('theme');
 					var theme =

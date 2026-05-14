@@ -108,6 +108,22 @@ html[data-theme='light'] {
 	}
 }
 
+/* Scroll-driven reveal: gated by `.js` so JS-off users see content normally.
+   Mark with `class="to-reveal"` + `use:reveal`. Action toggles `.is-revealed`. */
+.js .to-reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition:
+		opacity 0.9s var(--ease-drift),
+		transform 0.9s var(--ease-drift);
+	transition-delay: var(--reveal-delay, 0ms);
+	will-change: opacity, transform;
+}
+.js .to-reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
 /* Skip-nav: invisible until focused, then jumps into view. */
 @utility skip-nav {
 	position: fixed;
