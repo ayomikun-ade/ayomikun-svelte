@@ -12,7 +12,7 @@
 	}
 </script>
 
-<ul class="flex flex-wrap items-center gap-1 {klass}">
+<ul class="flex flex-wrap items-center gap-3 {klass}">
 	{#each socials as link (link.key)}
 		<li>
 			<a

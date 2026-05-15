@@ -38,7 +38,7 @@
 		<!-- Status / tagline -->
 		<p class="reveal font-mono text-xs tracking-[0.3em] text-ink-muted uppercase" style="--d: 0ms">
 			<span class="mr-2 inline-block size-1.5 bg-accent align-middle"></span>
-			Available for work · Lagos · 2026
+			Available for work · Earth · 2026
 		</p>
 
 		<!-- Headline -->
@@ -62,7 +62,7 @@
 		<!-- Intro -->
 		<p class="reveal mt-10 max-w-xl text-lg leading-relaxed text-ink-muted" style="--d: 480ms">
 			Frontend engineer working at the intersection of interaction design, animation, and
-			performance. Currently shipping with SvelteKit, obsessing over the milliseconds between intent
+			performance. Currently shipping with Nextjs, obsessing over the milliseconds between intent
 			and feedback.
 		</p>
 
