@@ -5,17 +5,17 @@
 	import Timeline from '$lib/components/Timeline.svelte';
 
 	const facts = [
-		{ label: 'Based', value: 'Lagos · UTC+1' },
-		{ label: 'Stack', value: 'Svelte · TypeScript · Tailwind' },
-		{ label: 'Focus', value: 'Interaction · motion · perf' },
+		{ label: 'Based', value: 'Earth · UTC+1' },
+		{ label: 'Stack', value: 'Nextjs · TypeScript · Tailwind' },
+		{ label: 'Focus', value: 'Interaction · motion · user-friendly' },
 		{ label: 'Status', value: 'Open to work' }
 	];
 
 	const currently = [
-		{ label: 'Building', value: 'this portfolio · Stagecraft v2' },
-		{ label: 'Reading', value: 'science fiction, mostly' },
-		{ label: 'Listening', value: 'ambient electronic loops' },
-		{ label: 'Learning', value: 'GLSL, slowly and badly' }
+		{ label: 'Building', value: 'myself · ayomikun v2' },
+		{ label: 'Reading', value: 'fantasy, mostly' },
+		{ label: 'Listening', value: 'Adele, Raye and Olivia Dean' },
+		{ label: 'Learning', value: 'animation, slowly and badly' }
 	];
 </script>
 
@@ -45,18 +45,18 @@
 	<div class="grid grid-cols-1 gap-12 sm:grid-cols-[1fr_auto] sm:gap-16">
 		<div class="space-y-6 text-lg leading-relaxed">
 			<p class="to-reveal text-ink" use:reveal={{ delay: 160 }}>
-				Frontend engineer based in Lagos. I build interactive web experiences with a particular
+				Frontend engineer based in Space. I build interactive web experiences with a particular
 				obsession for animation feel, perceived performance, and the small interactions that make a
 				UI feel <span class="text-accent">intentional</span>
 				rather than just functional.
 			</p>
 			<p class="to-reveal text-ink-muted" use:reveal={{ delay: 220 }}>
-				Most of my recent work is in Svelte and SvelteKit — building tools that feel like they care
-				about the person using them. Before that, four years across React and Vue, plus a slow
-				simmer of Go on the backend.
+				Most of my recent work is in Nextjs and TypeScript — building tools that feel like they care
+				about the person using them. Before that, four years across React, plus a slow
+				simmer of Python and Express on the backend.
 			</p>
 			<p class="to-reveal text-ink-muted" use:reveal={{ delay: 280 }}>
-				When I'm not at a keyboard, I'm probably reading sci-fi, listening to ambient electronic, or
+				When I'm not at a keyboard, I'm probably reading fantasy, listening to music, or
 				convincing myself that the next thing I build will be
 				<em>simpler this time</em>.
 			</p>
