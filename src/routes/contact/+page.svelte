@@ -167,6 +167,6 @@
 		class="to-reveal mt-16 font-mono text-[10px] tracking-[0.25em] text-ink-dim uppercase"
 		use:reveal={{ delay: 480 }}
 	>
-		Usually replies in 1–2 days · Lagos · UTC+1 · Open to work
+		Usually replies in 1–2 days · Earth · UTC+1 · Open to work
 	</p>
 </section>
