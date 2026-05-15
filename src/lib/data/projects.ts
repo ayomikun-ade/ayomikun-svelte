@@ -94,6 +94,31 @@ export const projects: Project[] = [
 		}
 	},
 	{
+     slug: "arcanis",
+     title: "Arcanis",
+     tagline: "End-to-end encrypted messaging — the server never sees a word.",
+     description:
+       "A secure messaging web app. All encryption and decryption happens on the client using the Web Crypto API: AES-GCM for message content, RSA-OAEP for key exchange. Private keys never leave the browser. The server stores only ciphertext blobs. Built around the WhisperBox API with JWT auth, public-key exchange, and graceful handling of decryption failures — including an inline error state for messages that can't be read.",
+     year: 2026,
+     category: "web-app",
+     tech: [
+       "React",
+       "TypeScript",
+       "Web Crypto API",
+       "AES-GCM",
+       "RSA-OAEP",
+       "IndexedDB",
+       "JWT",
+     ],
+     cover: "arcanis-port",
+     coverAlt: "Arcanis landing page",
+     links: {
+       live: "https://arcaniss.vercel.app",
+       github: "https://github.com/ayomikun-ade/arcanis",
+     },
+     featured: true,
+   },
+	{
 		slug: 'cds-ams',
 		title: 'CDS Attendance Management System',
 		tagline: 'Geofenced NYSC CDS attendance with real-time location verification.',
@@ -108,7 +133,7 @@ export const projects: Project[] = [
 			live: 'https://edb-ams.vercel.app/',
 			github: 'https://github.com/ayomikun-ade/cds-ams'
 		},
-		featured: true
+		featured: false
 	},
 	{
 		slug: 'murmer',
@@ -126,6 +151,47 @@ export const projects: Project[] = [
 			github: 'https://github.com/ayomikun-ade/secret-ink'
 		}
 	},
+	{
+     slug: "veloris",
+     title: "Veloris",
+     tagline: "A real-time cyber threat dashboard pulling live data from three streams.",
+     description:
+       "A production-grade analytics dashboard built in Vue 3 + TypeScript + Tailwind CSS v4.",
+     year: 2026,
+     category: "web-app",
+     tech: [
+       "Vue 3",
+       "TypeScript",
+       "Tailwind CSS v4",
+       "Pinia",
+       "ECharts",
+       "WebSocket",
+     ],
+     cover: "veloris-port",
+     coverAlt: "Veloris home page showing threat feed panels",
+     links: {
+       live: "https://veloris-smoky.vercel.app",
+       github: "https://github.com/ayomikun-ade/veloris",
+     },
+     featured: true,
+   },
+	{
+     slug: "ember",
+     title: "Ember - Habit Tracker",
+     tagline: "A dark, minimal PWA for building streaks that actually stick.",
+     description:
+       "A full-stack Progressive Web App built for HNG14 Frontend Stage 3. Features a cinematic two-word splash screen, a modal for creating and editing habits, and a dashboard that tracks daily completion and running streaks.",
+     year: 2026,
+     category: "experiment",
+     tech: ["React", "TypeScript", "Tailwind CSS", "PWA", "LocalStorage"],
+     cover: "ember-port",
+     coverAlt: "Habit Tracker login form on a dark background",
+     links: {
+       live: "https://emberr-app.vercel.app",
+       github: "https://github.com/ayomikun-ade/ember",
+     },
+     featured: false,
+   },
 	{
 		slug: 'valentine-verses',
 		title: 'Valentine Verses',
