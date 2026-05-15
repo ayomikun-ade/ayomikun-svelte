@@ -5,7 +5,7 @@
 
 	// Single source of truth for the displayed email — same value lives in
 	// $lib/data/socials.ts for the footer + command palette.
-	const emailAddress = 'ellumainc@gmail.com';
+	const emailAddress = 'ayomikunade17@gmail.com';
 	const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent('Hi from your portfolio')}`;
 
 	// Non-email channels for the secondary row.
