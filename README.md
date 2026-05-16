@@ -4,7 +4,7 @@ Interactive developer portfolio built with **SvelteKit 2 + Svelte 5 (runes)** an
 
 Submission for HNG Frontend Wizards Stage 5b.
 
-> **Live URL:** _(set after deploy — see [Deploy](#deploy) below)_
+> **Live URL:** [Portfolio Link](https://ayomikun-svelte.vercel.app/)
 
 ---
 
